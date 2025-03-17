@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pong Game - CodeSumit Gaming</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #0a0a0a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .game-container {
+            position: relative;
+        }
+
+        canvas {
+            border: 2px solid #2196F3;
+            border-radius: 10px;
+            background-color: #1a1a1a;
+        }
+
+        .score-container {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .controls {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #2196F3;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1976D2;
+        }
+
+        .game-over {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .game-over h2 {
+            margin: 0 0 20px 0;
+            color: #f44336;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #2196F3;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #1976D2;
+        }
+
+        .instructions {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-button">← Back to Home</a>
+    <div class="instructions">
+        <p>Player 1: W/S keys | Player 2: Up/Down arrows</p>
+        <p>First to 5 points wins!</p>
+    </div>
+    <div class="game-container">
+        <div class="score-container">
+            <span id="player1Score">0</span>
+            <span id="player2Score">0</span>
+        </div>
+        <canvas id="gameCanvas" width="800" height="400"></canvas>
+        <div id="gameOver" class="game-over">
+            <h2>Game Over!</h2>
+            <p id="winner"></p>
+            <button onclick="startGame()">Play Again</button>
+        </div>
+    </div>
+    <div class="controls">
+        <button onclick="startGame()">New Game</button>
+        <button onclick="togglePause()">Pause</button>
+    </div>
+    <script src="pong.js"></script>
+</body>
+</html> 

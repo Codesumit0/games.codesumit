@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Guess - CodeSumit Gaming</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #0a0a0a;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+        }
+
+        .game-container {
+            position: relative;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .word-display {
+            font-size: 2.5rem;
+            letter-spacing: 10px;
+            margin: 20px 0;
+            font-family: monospace;
+        }
+
+        .keyboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+            gap: 5px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .key {
+            padding: 10px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #3F51B5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .key:hover {
+            background-color: #303F9F;
+        }
+
+        .key.used {
+            background-color: #1a1a1a;
+            cursor: not-allowed;
+        }
+
+        .key.correct {
+            background-color: #4CAF50;
+        }
+
+        .key.wrong {
+            background-color: #f44336;
+        }
+
+        .hangman {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            position: relative;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            font-size: 1.2rem;
+        }
+
+        .game-over {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+        }
+
+        .game-over h2 {
+            margin: 0 0 20px 0;
+            color: #f44336;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #3F51B5;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #303F9F;
+        }
+
+        .home-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            text-decoration: none;
+            color: white;
+            background-color: #3F51B5;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button:hover {
+            background-color: #303F9F;
+        }
+
+        .category {
+            font-size: 1.2rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .keyboard {
+                grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+            }
+
+            .key {
+                padding: 8px;
+                font-size: 1rem;
+            }
+
+            .word-display {
+                font-size: 2rem;
+                letter-spacing: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="home-button">← Back to Home</a>
+    <div class="game-container">
+        <div class="stats">
+            <span>Wins: <span id="wins">0</span></span>
+            <span>Guesses Left: <span id="guesses">6</span></span>
+        </div>
+        <div class="category" id="category">Category: Animals</div>
+        <div class="word-display" id="wordDisplay">_ _ _ _ _</div>
+        <canvas id="hangman" width="200" height="200"></canvas>
+        <div class="keyboard" id="keyboard"></div>
+        <div id="gameOver" class="game-over">
+            <h2>Game Over!</h2>
+            <p>The word was: <span id="solution"></span></p>
+            <button onclick="startGame()">Play Again</button>
+        </div>
+    </div>
+    <div class="controls">
+        <button onclick="startGame()">New Game</button>
+        <button onclick="changeCategory()">Change Category</button>
+    </div>
+    <script src="wordguess.js"></script>
+</body>
+</html> 
